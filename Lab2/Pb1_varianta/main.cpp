@@ -1,6 +1,6 @@
 // Pb1
 #include <iostream>
-#include "NumberList.cpp"
+#include "NumberList.h"
 using namespace std;
 int main()
 {

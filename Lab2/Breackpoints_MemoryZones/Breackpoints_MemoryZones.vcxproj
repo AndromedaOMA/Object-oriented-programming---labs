@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{fcac1fb9-6f14-4998-949d-43adb98844e9}</ProjectGuid>
-    <RootNamespace>Pb2varianta</RootNamespace>
+    <ProjectGuid>{90d1252b-60ac-4fec-9e97-d049400f7225}</ProjectGuid>
+    <RootNamespace>BreackpointsMemoryZones</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Pb2_varianta</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,7 +74,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLEGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -128,13 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GlobalF.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Student.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GlobalF.h" />
-    <ClInclude Include="Student.h" />
+    <ClCompile Include="Breackpoints_MemoryZones.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
