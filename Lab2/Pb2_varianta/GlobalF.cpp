@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cstring>
 #include "GlobalF.h"
-#include "Student.h"
-//#include "Student.h"
 
 int compareNames(const Student& A, const Student& B)
 {
@@ -14,7 +12,6 @@ int compareNames(const Student& A, const Student& B)
 		else
 			return -1;
 }
-
 //int  compareGradeMath(const Student& A, const Student& B)
 //{
 //	int avMathA = 0;

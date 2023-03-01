@@ -13,21 +13,15 @@ int main()
 	A.setName(nameA);
 	A.initCount();
 	A.setGradeMath(9);
-	A.setGradeMath(5);
 	A.setGradeEnglish(9);
-	A.setGradeEnglish(5);
 	A.setGradeHistory(9);
-	A.setGradeHistory(5);
 	A.detAvarageGrade();
 
 	B.setName(nameB);
 	B.initCount();
-	B.setGradeMath(9);
-	B.setGradeMath(10);
-	B.setGradeEnglish(9);
-	B.setGradeEnglish(10);
-	B.setGradeHistory(9);
-	B.setGradeHistory(10);
+	B.setGradeMath(2);
+	B.setGradeEnglish(2);
+	B.setGradeHistory(2);
 	B.detAvarageGrade();
 
 	int nrA = 0, nrB = 0;
