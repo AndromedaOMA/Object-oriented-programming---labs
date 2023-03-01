@@ -1,41 +1,57 @@
 #include <iostream>
 #include <cstring>
+#include <string.h>
 #include "Student.h"
 using namespace std;
 
-void Student::setName(char n[100])
-{
-	strcpy(name, n);
-}
 void Student::initCount()
 {
 	countMath = 0;
 	countEnglish = 0;
 	countHistory = 0;
 }
+//---------------------------------
+void Student::setName(char n[100])
+{
+	strcpy(name, n);
+}
+string Student::getName() const
+{
+	return name;
+}
+//---------------------------------
 void Student::setGradeMath(int val)
 {
-	mathGrades[countMath++] = val;
+	mathGrade = val;
 }
+int Student::getGradeMath() const
+{
+	return mathGrade;
+}
+//---------------------------------
 void Student::setGradeEnglish(int val)
 {
-	englishGrades[countEnglish++] = val;
+	englishGrade = val;
 }
+int Student::getGradeEnglish()const
+{
+	return englishGrade;
+}
+//---------------------------------
 void Student::setGradeHistory(int val)
 {
-	historyGrades[countHistory++] = val;
+	historyGrade = val;
 }
+int Student::getGradeHistory()const
+{
+	return historyGrade;
+}
+//---------------------------------
 void Student::detAvarageGrade()
 {
-	int avMath = 0, avEng = 0, avHis = 0;
-	for (int i = 0; i < countMath; i++)
-		avMath += mathGrades[i];
-	avMath /= countMath;
-	for (int i = 0; i < countEnglish; i++)
-		avEng += englishGrades[i];
-	avEng /= countEnglish;
-	for (int i = 0; i < countHistory; i++)
-		avHis += historyGrades[i];
-	avHis /= countHistory;
-	avarageGrade = (avEng + avHis + avMath) / 3;
+	avarageGrade = (englishGrade + historyGrade + mathGrade) / 3;
+}
+int Student::getAvarageGrade()const
+{
+	return avarageGrade;
 }

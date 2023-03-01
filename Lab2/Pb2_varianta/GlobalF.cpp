@@ -1,93 +1,114 @@
 #include <iostream>
 #include <cstring>
-//#include "GlobalF.h"
+#include "GlobalF.h"
 #include "Student.h"
+//#include "Student.h"
 
-int  compareNames(Student A, Student B)
+int compareNames(const Student& A, const Student& B)
 {
-	int r;
-	if (strcmp(A.name, B.name) == 0)
-		r = 0;
+	if (A.getName() == B.getName())
+		return 0;
 	else
-		if (strcmp(A.name, B.name) > 0)
-			r = 1;
+		if (A.getName() > B.getName())
+			return 1;
 		else
-			r = -1;
-	return r;
+			return -1;
 }
 
-int  compareGradeMath(Student A, Student B)
+//int  compareGradeMath(const Student& A, const Student& B)
+//{
+//	int avMathA = 0;
+//	for (int i = 0; i < A.countMath; i++)
+//		avMathA += A.mathGrades[i];
+//	avMathA /= A.countMath;
+//	int avMathB = 0;
+//	for (int i = 0; i < B.countMath; i++)
+//		avMathB += B.mathGrades[i];
+//	avMathB /= B.countMath;
+//
+//	if (avMathA == avMathB)
+//		return 0;
+//	else
+//		if (avMathA > avMathB)
+//			return 1;
+//		else
+//			return -1;
+//}
+int compareGradeMath(const Student& A, const Student& B)
 {
-	int r;
-	int avMathA = 0;
-	for (int i = 0; i < A.countMath; i++)
-		avMathA += A.mathGrades[i];
-	avMathA /= A.countMath;
-	int avMathB = 0;
-	for (int i = 0; i < B.countMath; i++)
-		avMathB += B.mathGrades[i];
-	avMathB /= B.countMath;
-
-	if (avMathA == avMathB)
-		r = 0;
+	if (A.getGradeMath() == B.getGradeMath())
+		return 0;
 	else
-		if (avMathA > avMathB)
-			r = 1;
+		if (A.getGradeMath() > B.getGradeMath())
+			return 1;
 		else
-			r = -1;
-	return r;
+			return -1;
 }
-int  compareGradeEnglish(Student A, Student B)
+//int  compareGradeEnglish(const Student& A, const Student& B)
+//{
+//	int avEngA = 0;
+//	for (int i = 0; i < A.countMath; i++)
+//		avEngA += A.englishGrades[i];
+//	avEngA /= A.countMath;
+//	int avEngB = 0;
+//	for (int i = 0; i < B.countMath; i++)
+//		avEngB += B.englishGrades[i];
+//	avEngB /= B.countMath;
+//
+//	if (avEngA == avEngB)
+//		return 0;
+//	else
+//		if (avEngA > avEngB)
+//			return 1;
+//		else
+//			return -1;
+//}
+int compareGradeEnglish(const Student& A, const Student& B)
 {
-	int r;
-	int avEngA = 0;
-	for (int i = 0; i < A.countMath; i++)
-		avEngA += A.englishGrades[i];
-	avEngA /= A.countMath;
-	int avEngB = 0;
-	for (int i = 0; i < B.countMath; i++)
-		avEngB += B.englishGrades[i];
-	avEngB /= B.countMath;
-
-	if (avEngA == avEngB)
-		r = 0;
+	if (A.getGradeEnglish() == B.getGradeEnglish())
+		return 0;
 	else
-		if (avEngA > avEngB)
-			r = 1;
+		if (A.getGradeEnglish() > B.getGradeEnglish())
+			return 1;
 		else
-			r = -1;
-	return r;
+			return -1;
 }
-int  compareGradeHistory(Student A, Student B)
+//int  compareGradeHistory(const Student& A, const Student& B)
+//{
+//	int avHisA = 0;
+//	for (int i = 0; i < A.countMath; i++)
+//		avHisA += A.historyGrades[i];
+//	avHisA /= A.countMath;
+//	int avHisB = 0;
+//	for (int i = 0; i < B.countMath; i++)
+//		avHisB += B.historyGrades[i];
+//	avHisB /= B.countMath;
+//
+//	if (avHisA == avHisB)
+//		return 0;
+//	else
+//		if (avHisA > avHisB)
+//			return 1;
+//		else
+//			return -1;
+//}
+int compareGradeHistory(const Student& A, const Student& B)
 {
-	int r;
-	int avHisA = 0;
-	for (int i = 0; i < A.countMath; i++)
-		avHisA += A.historyGrades[i];
-	avHisA /= A.countMath;
-	int avHisB = 0;
-	for (int i = 0; i < B.countMath; i++)
-		avHisB += B.historyGrades[i];
-	avHisB /= B.countMath;
-
-	if (avHisA == avHisB)
-		r = 0;
+	if (A.getGradeHistory() == B.getGradeHistory())
+		return 0;
 	else
-		if (avHisA > avHisB)
-			r = 1;
+		if (A.getGradeHistory() > B.getGradeHistory())
+			return 1;
 		else
-			r = -1;
-	return r;
+			return -1;
 }
-int  compareAvarageGrade(Student A, Student B)
+int compareAvarageGrade(const Student& A, const Student& B)
 {
-	int r;
-	if (A.avarageGrade == B.avarageGrade)
-		r = 0;
+	if (A.getAvarageGrade() == B.getAvarageGrade())
+		return 0;
 	else
-		if (A.avarageGrade > B.avarageGrade)
-			r = 1;
+		if (A.getAvarageGrade() > B.getAvarageGrade())
+			return 1;
 		else
-			r = -1;
-	return r;
+			return -1;
 }
