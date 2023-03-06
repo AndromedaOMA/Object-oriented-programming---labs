@@ -13,6 +13,8 @@ int main()
 	cin >> x >> y >> z;
 	cout << "Scrieti trei valori reale:" << '\n';
 	cin >> a >> b >> c;
+	cout << "Scrieti doua string-uri:" << '\n';
+	cin >> string1 >> string2;
 	cout << '\n';
 
 	cout << "Avem suma primelor doua, respectiv a tuturor numerelor intregi introduse:" << '\n';

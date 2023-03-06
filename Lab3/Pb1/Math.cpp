@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdarg>
+#include <cstring>
 #include "Math.h"
 using namespace std;
 
@@ -21,19 +22,19 @@ int Math::Add(double x, double y, double z)
 }
 int Math::Mul(int x, int y)
 {
-	return x + y;
+	return x * y;
 }
 int Math::Mul(int x, int y, int z)
 {
-	return x + y + z;
+	return x * y * z;
 }
 int Math::Mul(double x, double y)
 {
-	return x + y;
+	return x * y;
 }
 int Math::Mul(double x, double y, double z)
 {
-	return x + y + z;
+	return x * y * z;
 }
 int Math::Add(int count, ...)
 {
@@ -53,7 +54,7 @@ int Math::Add(int count, ...)
 	va_end(args);
 	return s;
 }
-char* Math::Add(const char*, const char*)
+char* Math::Add(const char* x, const char* y)
 {
-
+	strcat(x, y);
 }
