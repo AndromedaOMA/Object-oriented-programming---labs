@@ -12,11 +12,11 @@ int Math::Add(int x, int y, int z)
 {
 	return x + y + z;
 }
-int Math::Add(double x, double y)
+double Math::Add(double x, double y)
 {
 	return x + y;
 }
-int Math::Add(double x, double y, double z)
+double Math::Add(double x, double y, double z)
 {
 	return x + y + z;
 }
@@ -28,11 +28,11 @@ int Math::Mul(int x, int y, int z)
 {
 	return x * y * z;
 }
-int Math::Mul(double x, double y)
+double Math::Mul(double x, double y)
 {
 	return x * y;
 }
-int Math::Mul(double x, double y, double z)
+double Math::Mul(double x, double y, double z)
 {
 	return x * y * z;
 }
@@ -56,5 +56,10 @@ int Math::Add(int count, ...)
 }
 char* Math::Add(const char* x, const char* y)
 {
-	strcat(x, y);
+	if (strlen(x) == NULL || strlen(y) == NULL)
+		return nullptr;
+	char* z = new char[strlen(x) + strlen(y) + 1];
+	strcpy(z, x);
+	strcat(z, y);
+	return z;
 }

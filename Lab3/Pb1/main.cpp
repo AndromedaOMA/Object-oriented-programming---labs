@@ -7,7 +7,7 @@ int main()
 	Math m;
 	int x, y, z;
 	double a, b, c;
-	char* string1, * string2;
+	char string1[100], string2[100];
 
 	cout << "Scrieti trei valori intregi:" << '\n';
 	cin >> x >> y >> z;
@@ -26,8 +26,8 @@ int main()
 	cout << "Avem produsul primelor doua, respectiv a tuturor numerelor reale introduse:" << '\n';
 	cout << m.Mul(a, b) << ", " << m.Mul(a, b, c) << '\n';
 	cout << "Avem suma numarului variabil de valori intregi:" << '\n';
-	cout << m.Add(5, 1, 2, 3, 4, 5);
-	cout << "Acum vom aloca memorie pentru cele doua siruri introduse:" << '\n';
+	cout << m.Add(5, 1, 2, 3, 4, 5) << '\n';
+	cout << "Acum vom concatena cele doua siruri introduse:" << '\n';
 	cout << m.Add(string1, string2);
 	return 0;
 }

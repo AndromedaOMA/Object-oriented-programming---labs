@@ -10,6 +10,7 @@ Canvas::Canvas(int width, int height)
 void Canvas::DrawCircle(int x, int y, int ray, char ch)
 {
 	circle(x, y, ray);
+	outtextxy(10, 10, );
 }
 void Canvas::FillCircle(int x, int y, int ray, char ch)
 {
