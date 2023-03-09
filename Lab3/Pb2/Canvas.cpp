@@ -1,32 +1,52 @@
 #include <iostream>
+#include <cmath>
 #include "graphics.h"
-#pragma comment(lib,"graphics.lib")
 #include "Canvas.h"
+using namespace std;
 
-Canvas::Canvas(int width, int height)
+Canvas::Canvas(int width, int height) : widthCanvas(width), heightCanvas(height)
 {
-	initwindow(width, height);
+	ma = new char* [heightCanvas];
+	for (int i = 0; i < heightCanvas; i++) {
+		ma[i] = new char[widthCanvas];
+		for (int j = 0; j < widthCanvas; j++) {
+			ma[i][j] = ' ';
+		}
+	}
 }
+
 void Canvas::DrawCircle(int x, int y, int ray, char ch)
 {
-	circle(x, y, ray);
-	outtextxy(10, 10, );
+	for (int i = 0; i <= 360; i++)
+		SetPoint(x + ray * sin(i), y + ray * cos(i), ch);
 }
 void Canvas::FillCircle(int x, int y, int ray, char ch)
 {
-	setfillstyle(1, 14);
+	for (int i = 0; i <= ray; i++)
+		DrawCircle(x, y, i, ch);
 }
 void Canvas::DrawRect(int left, int top, int right, int bottom, char ch)
 {
-	rectangle(left, top, right, bottom);
+	for (int i = left; i < right; i++)
+	{
+		SetPoint(top, i, ch);
+		SetPoint(bottom, i, ch);
+	}
+	for (int i = top; i < bottom; i++)
+	{
+		SetPoint(i, left, ch);
+		SetPoint(i, right, ch);
+	}
 }
 void Canvas::FillRect(int left, int top, int right, int bottom, char ch)
 {
-	setfillstyle(1, 14);
+	for (int i = left + 1; i < right - 1; i++)
+		for (int j = top + 1; j < bottom - 1; j++)
+			SetPoint(i, j, ch);
 }
 void Canvas::SetPoint(int x, int y, char ch)
 {
-
+	ma[x][y] = ch;
 }
 void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 {
@@ -40,13 +60,13 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 	{
 		if (p >= 0)
 		{
-			putpixel(x, y, 7);
+			SetPoint(x, y, ch);
 			y++;
 			p = p + 2 * dy - 2 * dx;
 		}
 		else
 		{
-			putpixel(x, y, 7);
+			SetPoint(x, y, ch);
 			p = p + 2 * dy;
 		}
 		x++;
@@ -55,10 +75,16 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 }
 void Canvas::Print()
 {
-	getch();
-	closegraph();
+	for (int i = 0; i < heightCanvas; i++)
+	{
+		for (int j = 0; j < widthCanvas; j++)
+			cout << ma[i][j];
+		cout << '\n';
+	}
 }
 void Canvas::Clear()
 {
-	cleardevice();
+	for (int i = 0; i < heightCanvas; i++)
+		for (int j = 0; j < widthCanvas; j++)
+			ma[i][j] = ' ';
 }

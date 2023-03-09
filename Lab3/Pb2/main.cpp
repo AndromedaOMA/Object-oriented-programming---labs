@@ -1,24 +1,16 @@
 #include <iostream>
-#include "graphics.h"
-#pragma comment(lib,"graphics.lib")
 #include "Canvas.h"
 using namespace std;
 
 int main()
 {
-
-	Canvas c(500,500);
-	c.DrawLine(250, 250, 400, 400, 'l');
-	c.FillCircle(250, 250, 150, 'a');
-	c.Clear();
-
-	c.DrawCircle(250, 250, 150, 'c');
-	c.FillRect(100, 100, 350, 350, 'b');
-	c.DrawRect(100, 100, 350, 350, 'r');
-	c.Print();
-	c.Clear();
-
-	c.DrawLine(100, 100, 400, 400, 'l');
+	Canvas c(100, 100);
+	c.DrawLine(10, 10, 40, 50, 'l');
+	c.FillCircle(50, 50, 5, 'a');
+	c.DrawCircle(80, 80, 5, 'c');
+	c.SetPoint(90, 90, 'p');
+	c.FillRect(10, 70, 50, 100, 'b');
+	c.DrawRect(10, 30, 30,50, 'r');
 	c.Print();
 	c.Clear();
 

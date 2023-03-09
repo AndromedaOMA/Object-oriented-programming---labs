@@ -1,7 +1,8 @@
 #pragma once
 class Canvas
 {
-    // add private data members
+    char** ma;
+    int widthCanvas=100, heightCanvas=100;
 public:
     Canvas(int width, int height);
     void DrawCircle(int x, int y, int ray, char ch);
