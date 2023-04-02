@@ -80,10 +80,17 @@ Number::Number(const Number& value)
 	this->Value = new char[25];
 	strcpy(this->Value,value.Value);
 }
+Number::Number(const Number&& value)
+{//TODO: trebuie sa mut Value la stanga si sa setez pe default (NULL) la dreapta
+	//nu mai trebuie sa aloc dinamic:
+	//la mutare: trebuie doar sa mut valori in stanga
+	//la copiere: aloc memorie pt st si copiez
+	*this = std::move(value);
+}
 //--
 Number::~Number()
 {
-	delete this->Value;
+	//delete this->Value;
 }
 
 //void* Number::operator new(size_t t)
@@ -105,8 +112,9 @@ Number Number::operator+(const Number& i)
 //--
 Number Number::operator-(const Number& i)
 {
-	Number dif(decimalValue - i.decimalValue);
-	return dif;
+	const auto d = decimalValue - i.decimalValue;
+	Number dif(d);
+	return Number(d);
 }
 //--
 int Number::operator>(const Number& i)

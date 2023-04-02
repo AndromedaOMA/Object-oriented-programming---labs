@@ -9,6 +9,7 @@ public:
 	Number(int value); 
 	Number(const char* value); 
 	Number(const Number &value); 
+	Number(const Number &&value); 
 	~Number();
 
 	//void* operator new(size_t t);

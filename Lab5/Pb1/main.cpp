@@ -49,7 +49,6 @@ int main()
 
 	printf("03---------------------------\n\n");
 
-	n1.~Number();
 	n1 = n2 - n3;
 	n1.Print();
 
