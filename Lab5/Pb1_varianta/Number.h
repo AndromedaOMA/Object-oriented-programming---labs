@@ -22,8 +22,8 @@ public:
 	bool operator >= (const Number& t);
 	bool operator < (const Number& t);
 	bool operator <= (const Number& t);
-	Number& operator = (long long int val); // move assignment (atribuire)
 	friend bool operator += (Number& i, Number value);
+	Number& operator = (long long int value);
 	bool operator -- ();
 	bool operator -- (int value);
 
