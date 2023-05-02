@@ -20,14 +20,14 @@ int main()
 
 	//--------------------------
 
-	std::string ma[100][100], word = "", strPrim = "";
+	std::string word = "", strPrim = "";
 	int index = 0;
 	for (auto c : str)
 	{
 		if (isalpha(c))
 			word += tolower(c);
 		else
-			if ((c == ' ' || c == ',' || c == '?' || c == '!' || c == '.') && word != "")
+			if ((c == ' ' || c == ',' || c == '?' || c == '!' || c == '.') && !word.empty())
 			{
 				strPrim += word;
 				strPrim += ' ';
@@ -66,13 +66,13 @@ int main()
 /*
 	std::vector<std::pair<std::string, int>> vec(MAP.begin(), MAP.end());
 	std::sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) { return a.second > b.second; });
-	
+
 	///std::priority_queue<
 	///		T,               // tipul elementelor din coada
 	///		Container,       // containerul subiacent utilizat pentru stocare
 	///		Compare          // functia comparator pentru sortare (optional)
 	///> pq;
-	
+
 	std::priority_queue<std::pair<std::string, int>, std::vector<std::pair<std::string, int>>, std::greater<>> pq(vec.begin(), vec.end());
 	while (!pq.empty()) {
 		std::pair<std::string, int> top_element = pq.top();
@@ -86,9 +86,9 @@ int main()
 
 
 
-	struct
+	struct comparator
 	{
-		bool operator() (const std::pair<std::string, int> l, const std::pair<std::string, int> r) const {
+		bool operator() (const std::pair<std::string, int>& l, const std::pair<std::string, int>& r) const {
 			if (l.second == r.second)
 			{
 				return l.first > r.first;
@@ -96,15 +96,14 @@ int main()
 
 			return l.second < r.second;
 		}
-	} comparator;
+	};
 
 
-	std::priority_queue<std::pair<std::string, int>, std::vector<std::pair<std::string, int>>, decltype(comparator)> pq{};
+	std::priority_queue<std::pair<std::string, int>, std::vector<std::pair<std::string, int>>, comparator> pq{};
 	for (auto& it : MAP)
 	{
 		pq.push(it);
 	}
-
 
 	while (!pq.empty()) {
 		auto& top_element = pq.top();
