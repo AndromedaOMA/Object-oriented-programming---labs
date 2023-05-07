@@ -49,6 +49,7 @@ public:
 	bool operator!=(MyIterator& m) { return p != m.p; }
 	int operator*() { return *p; }
 };
+
 class MyVector {
 	int v[10];
 public:

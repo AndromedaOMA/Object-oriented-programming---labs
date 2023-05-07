@@ -3,64 +3,143 @@
 
 template<typename K, typename V>
 class Map {
-private:
+public:
 	class Pair {
-	private:
+	public:
 		K key;
 		V value;
 		int index;
-	public:
-		//TODO
-		operator=(const V& val)
+		void operator=(const V& val)
 		{
 			this->value = val;
 		}
 	};
+
 	Pair* pairs;
-	int indexCurent;
+	int currentIndex;
 	int maxElements;
 
-public:
 	Map()
 	{
 		this->maxElements = 10;
 		this->pairs = new Pair[this->maxElements];
-		this->indexCurent = 0;
+		this->currentIndex = 0;
 	}
 	~Map()
 	{
-		//OPTIONAL
-		/*for(int i=0;i< this->indexCurent;i++)
-			delete Pair[i];*/
-		delete[]Pair;
-	}
-	//TODO
-	Pair& operator[](const K& k)
-	{
-		int ok = 0;
-		for (int i : pairs)
-			if (this->key == k)
-				ok = 1;
-		if (!ok)
-			this->Key = k;
-		else
-			this->pairs = new Pair[this->maxElements];
+		delete pairs;
 	}
 
-	//-------------------------------------------
-	
+	Pair& operator[](const K& k)
+	{
+		int index = -1;
+		for (int i = 0; i < currentIndex; i++)
+			if (this->pairs[i].key == k)
+			{
+				index = i;
+				break;
+			}
+		if (index != -1)
+			return this->pairs[index];
+		else
+		{
+			this->pairs[currentIndex] = Pair();
+			this->pairs[currentIndex].key = k;
+			this->pairs[currentIndex].index = currentIndex;
+			return this->pairs[currentIndex++];
+		}
+	}
+
+
+
 	class MyIterator {
 	public:
-		int* p;
+		Pair* p;
 
 		MyIterator& operator++() { p++; return *this; }
 		bool operator!=(MyIterator& m) { return p != m.p; }
-		int operator*() { return *p; }
+		Pair operator*() { return *p; }
 	};
+
 	//int* begin() { return&v[0]; }
 	//int* end() { return&v[10]; }
-	MyIterator begin() { MyIterator i; i.p = &v[0]; return i; }
-	MyIterator end() { MyIterator i; i.p = &v[10]; return i; }
+	MyIterator begin() { MyIterator i; i.p = &pairs[0]; return i; }
+	MyIterator end() { MyIterator i; i.p = &pairs[currentIndex]; return i; }
+
+//-------------------------------------------
+
+	Pair& Set(K val, const K& k)
+	{
+		int index = -1;
+		for (int i = 0; i < currentIndex; i++)
+			if (this->pairs[i].key == k)
+			{
+				index = i;
+				break;
+			}
+		if (index != -1)
+		{
+			this->pairs[index].key = val;
+			return this->pairs[index];
+		}
+		else
+		{
+			printf("Error!");
+			return 0;
+		}
+	}
+
+	bool Get(const K& key, V& value)
+	{
+		int index = -1;
+		for (int i = 0; i < currentIndex; i++)
+			if (this->pairs[i].k == key)
+				index = i;
+		if (index != -1)
+		{
+			this->pairs[index].value = (V)key;
+			return true;
+		}
+		else
+			return false;
+	}
+
+	int Count()
+	{
+		return currentIndex;
+	}
+
+	void Clear()
+	{
+		delete pairs;
+	}
+
+	bool Delete(const K& key)
+	{
+		int index = -1;
+		for (int i = 0; i < currentIndex; i++)
+			if (this->pairs[i].k == key)
+				index = i;
+		if (index != -1)
+		{
+			printf("Error!");
+			return 0;
+		}
+	}
+
+	bool Includes(const Map<K, V>& map)
+	{
+		for (int i = 0; i < currentIndex; i++)
+		{
+			int ok = 0;
+			for (int j = 0; j < map.currentIndex; i++)
+				if (this->pairs[i] == map->pairs[j])
+					ok = 1;
+			if (ok == 0)
+				return false;
+		}
+		return true;
+	}
 };
 
 int main()
