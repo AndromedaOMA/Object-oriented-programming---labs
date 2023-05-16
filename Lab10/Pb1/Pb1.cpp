@@ -1,5 +1,5 @@
 #include <exception>
-
+using namespace std;
 
 class exceptie_out_of_range : public std::exception
 {
@@ -28,58 +28,42 @@ class Compare
 {
 public:
 	virtual int CompareElements(void* e1, void* e2) = 0;
-};///derivare clasa de aici
+};
 
 
 template<class T>
 class ArrayIterator {
-	//private:
-	//	int Current;
-	//	T** List;
-	//	int Line, Column;
-	//
-	//public:
-	//	ArrayIterator(T** list, int line, int column) :List(list), Current(0), Line(line), Column(column) {}
-	//	ArrayIterator& operator++()
-	//	{
-	//		++Current;
-	//		return *this;
-	//	}
-	//	ArrayIterator& operator--()
-	//	{
-	//		--Current;
-	//		return *this;
-	//	}
-	//	bool operator==(ArrayIterator<T>& otherArray)
-	//	{
-	//		return Current == otherArray.Current && List == otherArray.List && Line == otherArray.Line && Column = otherArray.Column;
-	//	}
-	//	bool operator!=(ArrayIterator<T>& otherArray)
-	//	{
-	//		return *this != other;
-	//	}
-	//	T* GetElement()
-	//	{
-	//	}
 private:
-	int Current;
+	int Current, Dim;
+	T** List;
 
 public:
-	ArrayIterator() {}
+	ArrayIterator(T** list, int current, int dim) :List(list), Current(current), Dim(dim) {}
 	ArrayIterator& operator++()
 	{
+		if (Current == Dim)
+			throw "Eroare: Iteratorul a depasit dimensiunea listei!";
+		++Current;
+		return *this;
 	}
 	ArrayIterator& operator--()
 	{
+		if (Current == 0)
+			throw "Eroare: Iteratorul a depasit dimensiunea listei!";
+		--Current;
+		return *this;
 	}
 	bool operator==(ArrayIterator<T>& otherArray)
 	{
+		return Current == otherArray.Current && List == otherArray.List && Dim == otherArray.Dim;
 	}
 	bool operator!=(ArrayIterator<T>& otherArray)
 	{
+		return *this != otherArray;
 	}
 	T* GetElement()
 	{
+		return this->List[current];
 	}
 };
 
@@ -100,7 +84,8 @@ public:
 	~Array() // destructor
 	{
 		for (int i = 0; i < Capacity; i++)
-			delete List[i];
+			if (List[i] != nullptr)
+				delete List[i];
 		delete[]List;
 	}
 	Array(int capacity) // Lista e alocata cu 'capacity' elemente
@@ -111,7 +96,7 @@ public:
 			Capacity = capacity;
 			List = new T[Capacity];
 			for (int i = 0; i < Capacity; i++)
-				List[i] = new T;
+				List[i] = nullptr;
 		}
 
 		catch (exceptie_capacitate_sub_1& e)
@@ -125,10 +110,7 @@ public:
 		Size = otherArray.Size;
 		List = new T[Capacity];
 		for (int i = 0; i < Capacity; i++)
-		{
-			List[i] = new T;
-			*List[i] = otherArray[i];
-		}
+			List[i] = otherArray[i];
 	}
 
 	T& operator[] (int index) // arunca exceptie daca index este out of range
@@ -136,7 +118,10 @@ public:
 		try {
 			if (index < 0 || index>Size)
 				throw exceptie_out_of_range();
-			return this->List[index];
+			if (List[index] != nullptr)
+				return *this->List[index];
+			else
+				throw "Error: elementul curent e nullptr! ..."
 		}
 
 		catch (exceptie_out_of_range& e)
@@ -147,8 +132,19 @@ public:
 
 	const Array<T>& operator+=(const T& newElem) // adauga un element de tipul T la sfarsitul listei si returneaza this
 	{
-		*(this->List[++Size]) = newElem;
-		return *this;
+		if (Size == Capacity)
+			DoubleSize();
+		this->List[++Size] = &newElem;
+		return this;
+	}
+	void DoubleSize()
+	{
+		Capacity *= 2;
+		T** Aux = new T[Capacity];
+		for (int i = 0; i < Size; i++)
+			Aux[i] = List[i];
+		delete[]List;
+		List = Aux;
 	}
 	const Array<T>& Insert(int index, const T& newElem) // adauga un element pe pozitia index, retureaza this. Daca index e invalid arunca o exceptie
 	{
@@ -156,11 +152,12 @@ public:
 			if (index < 0 || index >= Size)
 				throw exceptie_wrong_index();
 
-			//T* aux = newElem;
+			if (Size == Capacity)
+				DoubleSize();
 
 			for (int i = index + 1; i < Size; i++)
 				List[i] = List[i - 1];
-			List[index] = newElem;
+			List[index] = *newElem;
 
 			return this;
 		}
@@ -176,10 +173,13 @@ public:
 			if (index < 0 || index >= Size)
 				throw exceptie_wrong_index();
 
-			T* aux = List[index];
+			while (Size + otherArray.Size >= Capacity)
+				DoubleSize();
 
-			//?????????????????????????????????
-			//ca mai sus
+			for (int i = index; i < Size; i++)
+				List[i + otherArray.Size] = List[i];
+			for (int i = index; i < otherArray.Size; i++)
+				List[i] = otherArray.List[i];
 
 			return this;
 		}
@@ -195,8 +195,7 @@ public:
 			if (index < 0 || index >= Size)
 				throw exceptie_wrong_index();
 
-			//T* aux = newElem;
-
+			delete List[index];
 			for (int i = index; i < Size - 1; i++)
 				List[i] = List[i + 1];
 			Size--;
@@ -224,10 +223,10 @@ public:
 
 	void Sort() // sorteaza folosind comparatia intre elementele din T
 	{
-			for (int i = 0; i < Size - 1; i++)
-				for (int j = i + 1; j < Size; j++)
-					if (*List[i] > *List[j])
-						std::swap(List[i], List[j]);
+		for (int i = 0; i < Size - 1; i++)
+			for (int j = i + 1; j < Size; j++)
+				if (*List[i] > *List[j])
+					std::swap(List[i], List[j]);
 	}
 	int compare(const T& l1, const T& l2)
 	{
@@ -235,87 +234,89 @@ public:
 	}
 	void Sort(int(*compare)(const T&, const T&)) // sorteaza folosind o functie de comparatie
 	{
-			for (int i = 0; i < Size - 1; i++)
-				for (int j = i + 1; j < Size; j++)
-					if (compare(List[i], List[j]))
-						std::swap(List[i], List[j]);
+		for (int i = 0; i < Size - 1; i++)
+			for (int j = i + 1; j < Size; j++)
+				if (compare(List[i], List[j]))
+					std::swap(List[i], List[j]);
 	}
 	void Sort(Compare* comparator) // sorteaza folosind un obiect de comparatie
 	{
-
+		for (int i = 0; i < Size - 1; i++)
+			for (int j = i + 1; j < Size; j++)
+				if (comparator->CompareElements(List[i], List[j]))
+					std::swap(List[i], List[j]);
 	}
+
+
 
 	// functii de cautare - returneaza pozitia elementului sau -1 daca nu exista
 	int BinarySearch(const T& elem) // cauta un element folosind binary search in Array
 	{
-		for (int i = 0; i < Capacity; i++)
+		int mij, st = 0, dr = Size;
+		while (st != dr && *List[mij] != elem)
 		{
-			int mij = Size / 2, st = 0, dr = Size;
-			while (st != dr && List[i][mij] != elem)
-			{
-				if (elem > List[i][mij])
-					st = mij + 1;
-				else
-					dr = mij - 1;
-				if (List[i][mij] == elem)
-					return mij;
-			}
+			mij = (st + dr) / 2;
+			if (elem > *List[mij])
+				st = mij + 1;
+			else
+				dr = mij - 1;
+			if (*List[mij] == elem)
+				return mij;
 		}
 		return -1;
 	}
 	int BinarySearch(const T& elem, int(*compare)(const T&, const T&)) // cauta un element folosind binary search si o functie de comparatie
 	{
-		for (int i = 0; i < Capacity; i++)
+		int mij, st = 0, dr = Size;
+		while (st != dr && *List[mij] != elem)
 		{
-			int mij = Size / 2, st = 0, dr = Size;
-			while (st != dr && List[i][mij] != elem)
-			{
-				if (compare(elem, List[i][mij]))
-					st = mij + 1;
-				else
-					dr = mij - 1;
-			}
-			if (List[i][mij] == elem)
+			mij = (st + dr) / 2;
+			if (compare(elem, *List[mij]))
+				st = mij + 1;
+			else
+				dr = mij - 1;
+			if (*List[mij] == elem)
 				return mij;
 		}
 		return -1;
 	}
 	int BinarySearch(const T& elem, Compare* comparator)//  cauta un element folosind binary search si un comparator
 	{
-
+		int mij, st = 0, dr = Size;
+		while (st != dr && *List[mij] != elem)
+		{
+			mij = (st + dr) / 2;
+			if (comparator->CompareElements(elem, *List[mij]))
+				st = mij + 1;
+			else
+				dr = mij - 1;
+			if (*List[mij] == elem)
+				return mij;
+		}
+		return -1;
 	}
+
 
 	int Find(const T& elem) // cauta un element in Array
 	{
-		for (int i = 0; i < Capacity; i++)
-		{
-			if (List[i][Size] > elem)
-				for (int j = 0; j <= Size; j++)
-				{
-					if (List[i][j] > elem)
-						return j;
-					return -1;
-				}
-		}
+		for (int j = 0; j < Size; j++)
+			if (*List[j] == elem)
+				return j;
 		return -1;
 	}
 	int Find(const T& elem, int(*compare)(const T&, const T&)) //  cauta un element folosind o functie de comparatie
 	{
-		for (int i = 0; i < Capacity; i++)
-		{
-			if (compare(List[i][Size], elem))
-				for (int j = 0; j <= Size; j++)
-				{
-					if (compare(List[i][j], elem))
-						return j;
-					return -1;
-				}
-		}
+		for (int j = 0; j < Size; j++)
+			if (compare(*List[j], elem))
+				return j;
 		return -1;
 	}
 	int Find(const T& elem, Compare* comparator)//  cauta un element folosind un comparator
 	{
-
+		for (int j = 0; j < Size; j++)
+			if (comparator->CompareElements(*List[j], elem))
+				return j;
+		return -1;
 	}
 
 	int GetSize()
@@ -329,12 +330,13 @@ public:
 
 	ArrayIterator<T> GetBeginIterator()
 	{
-		ArrayIterator i;
-		i.
+		ArrayIterator<T> i(List, 0, Size);
+		return i;
 	}
 	ArrayIterator<T> GetEndIterator()
 	{
-
+		ArrayIterator<T> i(List, Size, Size);
+		return i;
 	}
 	//MyIterator begin() { MyIterator i; i.p = &pairs[0]; return i; }
 	//MyIterator end() { MyIterator i; i.p = &pairs[currentIndex]; return i; }
