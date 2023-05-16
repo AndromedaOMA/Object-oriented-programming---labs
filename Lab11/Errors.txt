@@ -1,0 +1,13 @@
+line 10: if (*list_to_sort[i] > *list_to_sort[j])
+ -> if (*list_to_sort[i] < *list_to_sort[j])
+
+line 29: MergeSort(list_to_sort, m + 1, dr); -> 
+        MergeSort(list_to_sort, m, dr);
+
+line 68: MergeSort(List, 0, Size - 1);
+-> MergeSort(List, 0, Size - 2);
+
+line 74: std::cout << *List[i] << " ";
+-> std::cout << *List[i+1] << " ";
+
+line 55:  if (*List[i] != *list_to_compare.List[i]) ->  if (*List[i] != list_to_compare.List[i])
