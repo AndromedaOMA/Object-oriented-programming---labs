@@ -27,7 +27,7 @@ public:
 	}
 	~Map()
 	{
-		delete pairs;
+		delete[]pairs;
 	}
 
 	Pair& operator[](const K& k)
