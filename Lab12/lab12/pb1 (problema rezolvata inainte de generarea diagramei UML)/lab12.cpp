@@ -17,16 +17,18 @@ public:
 	{
 		delete[]nume;
 	}
-
+	virtual void Print() {};
 };
 
 class Prieten : public Contact {
 	char* dataNastere = nullptr, * numarTelefon = nullptr, * adresa = nullptr;
 public:
-	Prieten(const char* inputNume, const char* inputDataNastere, const char* inputNumarTelefon, const char* inputAdresa)
+	Prieten(
+		const char* inputNume,
+		const char* inputDataNastere,
+		const char* inputNumarTelefon,
+		const char* inputAdresa) : Contact(inputNume)
 	{
-		//Contact(inputNume);
-
 		dataNastere = new char[strlen(inputDataNastere) + 1];
 		numarTelefon = new char[strlen(inputNumarTelefon) + 1];
 		adresa = new char[strlen(inputAdresa) + 1];
@@ -52,28 +54,27 @@ public:
 		delete[] adresa;
 	}
 
-	void Print()
-	{
-		for (int i = 0; i < strlen(dataNastere); i++)
-			std::cout << dataNastere[i];
-		std::cout << '\n' << numarTelefon << '\n';
-		for (int i = 0; i < strlen(adresa); i++)
-			std::cout << adresa[i];
-		std::cout << '\n';
-	}
-	//void Print() override
+	//void Print()
 	//{
-	//	std::cout << "Nume: " << nume << ", Data Nastere: " << dataNastere << ", Numar Telefon: " << numarTelefon << ", Adresa: " << adresa << std::endl;
+	//	for (int i = 0; i < strlen(dataNastere); i++)
+	//		std::cout << dataNastere[i];
+	//	std::cout << '\n' << numarTelefon << '\n';
+	//	for (int i = 0; i < strlen(adresa); i++)
+	//		std::cout << adresa[i];
+	//	std::cout << '\n';
 	//}
+
+	void Print() override
+	{
+		std::cout << "Nume: " << nume << ", Data Nastere: " << dataNastere << ", Numar Telefon: " << numarTelefon << ", Adresa: " << adresa << std::endl;
+	}
 };
 
 class Cunoscut : public Contact {
 public:
 	char* numarTelefon;
-	Cunoscut(const char* inputNume, const char* inputNumarTelefon)
+	Cunoscut(const char* inputNume, const char* inputNumarTelefon) : Contact(inputNume)
 	{
-		//Contact(inputNume);
-
 		numarTelefon = new char[strlen(inputNumarTelefon) + 1];
 
 		for (int i = 0; i < strlen(inputNumarTelefon); i++)
@@ -85,18 +86,20 @@ public:
 	{
 		delete[] numarTelefon;
 	}
-	//void Print() override
-	//{
-	//	std::cout << "Nume: " << nume << ", Numar Telefon: " << numarTelefon << std::endl;
-	//}
+
+	void Print() override
+	{
+		std::cout << "Nume: " << nume << ", Numar Telefon: " << numarTelefon << std::endl;
+	}
 };
 class Coleg :public Contact {
 	char* firma = nullptr, * numarTelefon, * adresa = nullptr;
 public:
-	Coleg(const char* inputNume, const char* inputFirma, const char* inputNumarTelefon, const char* inputAdresa)
+	Coleg(const char* inputNume,
+		const char* inputFirma,
+		const char* inputNumarTelefon,
+		const char* inputAdresa) : Contact(inputNume)
 	{
-		//Contact(inputNume);
-
 		firma = new char[strlen(inputFirma) + 1];
 		numarTelefon = new char[strlen(inputNumarTelefon) + 1];
 		adresa = new char[strlen(inputAdresa) + 1];
@@ -121,10 +124,10 @@ public:
 		delete[] numarTelefon;
 		delete[] adresa;
 	}
-	//void Print() override
-	//{
-	//	std::cout << "Nume: " << nume << ", Firma: " << firma << ", Numar Telefon: " << numarTelefon << ", Adresa: " << adresa << std::endl;
-	//}
+	void Print() override
+	{
+		std::cout << "Nume: " << nume << ", Firma: " << firma << ", Numar Telefon: " << numarTelefon << ", Adresa: " << adresa << std::endl;
+	}
 };
 
 class Agenda {
@@ -161,9 +164,20 @@ public:
 
 			if (ok)
 			{
+				std::cout << "A fost sters contactul cu numele ";
+				for (int i = 0; i < strlen(NUME); i++)
+					std::cout << NUME[i];
+				std::cout << '\n';
 				delete* it;
 				contacte.erase(it);
 				break;
+			}
+			else
+			{
+				std::cout << "Nu s-a gasit contact cu numele ";
+				for (int i = 0; i < strlen(NUME); i++)
+					std::cout << NUME[i];
+				std::cout << '\n';
 			}
 		}
 	}
@@ -174,11 +188,11 @@ public:
 		contacte.push_back(contact);
 	}
 
-	//void Afisare() {
-	//	for (const auto& contact : contacte) {
-	//		contact->Print();
-	//	}
-	//}
+	void Afisare() {
+		for (const auto& contact : contacte) {
+			contact->Print();
+		}
+	}
 };
 
 int main()
@@ -188,6 +202,17 @@ int main()
 	A.adaugareContact(new Cunoscut("Will Smith", "0987654321"));
 	A.adaugareContact(new Coleg("MJ", "9876543210", "Chicago Bulls", "Adresa 2"));
 
-	//A.Afisare();
+	A.Afisare();
+	std::cout << '\n';
+
+	A.stergereContact("Olaru Marius");
+	std::cout << '\n';
+
+	A.Afisare();
+	std::cout << '\n';
+
+	std::cout<<A.cautareContactDupaNume("Olaru Marius");
+	std::cout << '\n';
+
 	return 0;
 }
