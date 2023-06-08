@@ -20,7 +20,7 @@ class exceptie2 : public exception
 
 int main()
 {
-	int z = -1, x = 50, y = 30;
+	int z = -1, x = 50, y = 0;
 	int arr[4] = { 0 };
 	int i = 10;
 	exceptie1 divide0;

@@ -128,6 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataBase.cpp" />
+    <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="IntegerData.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="StringData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataBase.h" />
+    <ClInclude Include="Entry.h" />
+    <ClInclude Include="IntegerData.h" />
+    <ClInclude Include="StringData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

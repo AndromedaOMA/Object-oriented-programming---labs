@@ -24,8 +24,6 @@ public:
 	void operator--(); //pentru --exemple
 	void operator--(int numar); //pentru exemple--
 
-	void operator--();
-	void operator--(int numar);
 
 
 	bool operator!();
