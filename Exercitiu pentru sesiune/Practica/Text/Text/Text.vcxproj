@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{83553520-29d0-481f-b230-479766abd7c1}</ProjectGuid>
-    <RootNamespace>Biblioteca</RootNamespace>
+    <ProjectGuid>{58667d8d-da93-4cc2-803a-0973a52eaf57}</ProjectGuid>
+    <RootNamespace>Text</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,16 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Biblioteca.cpp" />
+    <ClCompile Include="Cuvant.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="revista.cpp" />
-    <ClCompile Include="roman.cpp" />
+    <ClCompile Include="Paragraf.cpp" />
+    <ClCompile Include="Propozitie.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Biblioteca.h" />
-    <ClInclude Include="carte.h" />
-    <ClInclude Include="revista.h" />
-    <ClInclude Include="roman.h" />
+    <ClInclude Include="Cuvant.h" />
+    <ClInclude Include="Paragraf.h" />
+    <ClInclude Include="Propozitie.h" />
+    <ClInclude Include="Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

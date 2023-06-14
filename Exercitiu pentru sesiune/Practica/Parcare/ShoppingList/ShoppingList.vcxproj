@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{83553520-29d0-481f-b230-479766abd7c1}</ProjectGuid>
-    <RootNamespace>Biblioteca</RootNamespace>
+    <ProjectGuid>{1128b778-af9d-4e31-aa22-3e480183cf09}</ProjectGuid>
+    <RootNamespace>ShoppingList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,16 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Biblioteca.cpp" />
+    <ClCompile Include="Food.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="revista.cpp" />
-    <ClCompile Include="roman.cpp" />
+    <ClCompile Include="Miscellaneous.cpp" />
+    <ClCompile Include="ShoppingList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Biblioteca.h" />
-    <ClInclude Include="carte.h" />
-    <ClInclude Include="revista.h" />
-    <ClInclude Include="roman.h" />
+    <ClInclude Include="Food.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Miscellaneous.h" />
+    <ClInclude Include="ShoppingList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

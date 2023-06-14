@@ -15,30 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Biblioteca.cpp">
+    <ClCompile Include="mian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="roman.cpp">
+    <ClCompile Include="Masina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="revista.cpp">
+    <ClCompile Include="SUV.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="RangeRover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dacia.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MasinaOras.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Opel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Biblioteca.h">
+    <ClInclude Include="Masina.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="roman.h">
+    <ClInclude Include="SUV.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="revista.h">
+    <ClInclude Include="RangeRover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="carte.h">
+    <ClInclude Include="Dacia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MasinaOras.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Opel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

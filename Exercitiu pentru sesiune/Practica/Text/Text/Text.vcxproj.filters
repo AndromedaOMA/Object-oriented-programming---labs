@@ -15,30 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Biblioteca.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="roman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="revista.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuvant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Propozitie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Paragraf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Biblioteca.h">
+    <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="roman.h">
+    <ClInclude Include="Cuvant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="revista.h">
+    <ClInclude Include="Propozitie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="carte.h">
+    <ClInclude Include="Paragraf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
